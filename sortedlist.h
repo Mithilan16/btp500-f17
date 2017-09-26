@@ -23,7 +23,7 @@ public:
 	};
 	class iterator:public const_iterator{
 	public:
-		iterator();
+		iterator(){}
 		iterator operator++(){}
 		iterator operator++(int){}
 		iterator operator--(){}
