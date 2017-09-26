@@ -17,24 +17,29 @@ public:
 	}
 	void push_front(const T& data);
 	void push_back(const T& data);
-	void pop_front(const T& data);
-	void pop_back(const T& data);
+	void pop_front();
+	void pop_back();
 	void print() const;
 	~SList();
 };
-void SList::push_front(const T& data){
+template <typename T>
+void SList<T>::push_front(const T& data){
 
 }
-void SList::push_back(const T& data){
+template <typename T>
+void SList<T>::push_back(const T& data){
 
 }
-void SList::pop_front(const T& data){
+template <typename T>
+void SList<T>::pop_front(){
 
 }
-void SList::pop_back(const T& data){
+template <typename T>
+void SList<T>::pop_back(){
 
 }
-void SList::print() const{
+template <typename T>
+void SList<T>::print() const{
 	Node* curr=front_;
 	while(curr){
 		std::cout << curr_->data_ << " ";
@@ -42,7 +47,8 @@ void SList::print() const{
 	}
 	std::cout << std::endl;
 }
-SList::~SList(){
+template <typename T>
+SList<T>::~SList(){
 	Node* curr=front_;
 	while(curr){
 		Node* rm=curr;
@@ -74,26 +80,31 @@ public:
 	}
 	void push_front(const T& data);
 	void push_back(const T& data);
-	void pop_front(const T& data);
-	void pop_back(const T& data);
+	void pop_front();
+	void pop_back();
 	void print() const;
 	~Sentinel();
 };
 
 
-void Sentinel::push_front(const T& data){
+template <typename T>
+void Sentinel<T>::push_front(const T& data){
 
 }
-void Sentinel::push_back(const T& data){
+template <typename T>
+void Sentinel<T>::push_back(const T& data){
 
 }
-void Sentinel::pop_front(const T& data){
+template <typename T>
+void Sentinel<T>::pop_front(){
 
 }
-void Sentinel::pop_back(const T& data){
+template <typename T>
+void Sentinel<T>::pop_back(){
 
 }
-void Sentinel::print() const{
+template <typename T>
+void Sentinel<T>::print() const{
 	Node* curr=front_->next_;
 	while(curr!=back_){
 		std::cout << curr_->data_ << " ";
@@ -101,7 +112,8 @@ void Sentinel::print() const{
 	}
 	std::cout << std::endl;
 }
-void Sentinel::reversePrint() const{
+template <typename T>
+void Sentinel<T>::reversePrint() const{
 	Node* curr=back_->prev_;
 	while(curr!=front_){
 		std::cout << curr_->data_ << " ";
@@ -109,7 +121,8 @@ void Sentinel::reversePrint() const{
 	}
 	std::cout << std::endl;
 }
-Sentinel::~Sentinel(){
+template <typename T>
+Sentinel<T>::~Sentinel(){
 	Node* curr=front_;
 	while(curr){
 		Node* rm=curr;
