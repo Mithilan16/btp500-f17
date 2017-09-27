@@ -1,3 +1,5 @@
+#include <iostream>
+
 template <typename T>
 class SList{
 	struct Node{
@@ -22,6 +24,7 @@ public:
 	void print() const;
 	~SList();
 };
+
 template <typename T>
 void SList<T>::push_front(const T& data){
 
@@ -42,7 +45,7 @@ template <typename T>
 void SList<T>::print() const{
 	Node* curr=front_;
 	while(curr){
-		std::cout << curr_->data_ << " ";
+		std::cout << curr->data_ << " ";
 		curr=curr->next_;
 	}
 	std::cout << std::endl;
@@ -83,6 +86,7 @@ public:
 	void pop_front();
 	void pop_back();
 	void print() const;
+	void reversePrint() const;
 	~Sentinel();
 };
 
@@ -107,7 +111,7 @@ template <typename T>
 void Sentinel<T>::print() const{
 	Node* curr=front_->next_;
 	while(curr!=back_){
-		std::cout << curr_->data_ << " ";
+		std::cout << curr->data_ << " ";
 		curr=curr->next_;
 	}
 	std::cout << std::endl;
@@ -116,7 +120,7 @@ template <typename T>
 void Sentinel<T>::reversePrint() const{
 	Node* curr=back_->prev_;
 	while(curr!=front_){
-		std::cout << curr_->data_ << " ";
+		std::cout << curr->data_ << " ";
 		curr=curr->prev_;
 	}
 	std::cout << std::endl;
