@@ -20,6 +20,57 @@ public:
 		front_=nullptr;
 		back_=nullptr;
 	}
+	class const_iterator{
+	friend class DList;
+	protected:
+		Node* curr_;
+		const_iterator(Node* n){
+			curr_=n;
+		}
+	public:
+		const_iterator(){
+			curr_=nullptr;
+		}
+		const_iterator operator++(){
+			//++x
+			curr_=curr_->next_;
+			return *this;
+		}
+		const_iterator operator++(int){
+			//x++
+			const_iterator old=*this;
+			curr_=curr_->next_;
+			return old;
+
+		}
+		const_iterator operator--(){}
+		const_iterator operator--(int){}
+		bool operator==(const_iterator rhs){
+			return curr_==rhs.curr_;
+		}
+		bool operator!=(const_iterator rhs){}
+		const T& operator*()const{
+			return curr_->data_
+		}
+	};
+	class iterator:public const_iterator{
+	public:
+		iterator(){
+			this->curr_=nullptr;
+		}
+		iterator operator++(){}
+		iterator operator++(int){}
+		iterator operator--(){}
+		iterator operator--(int){}
+		T& operator*(){}
+		const T& operator*()const{}
+	};
+	iterator begin();
+	const_iterator begin() const{
+		return const_iterator(front_);
+	}
+	const_iterator end() const{
+	}	
 	void push_front(const T& d);
 	void push_back(const T& d);
 	void pop_front();
