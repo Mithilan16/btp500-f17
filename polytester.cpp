@@ -4,6 +4,12 @@
 /*   Version 1.0                                           */
 /*   Tester for a1q2                                       */
 /*                                                         */
+/*   To compile:                                           */
+/*     g++ poly.cpp polytester.cpp -std=c++0x              */
+/*                                                         */
+/*   To run:                                               */
+/*     ./a.out                                             */
+/*                                                         */
 /***********************************************************/
 
 #include "poly.h"
@@ -143,5 +149,5 @@ int main(int argc,char* argv[]){
         }
     }
 
-return 0;
+    return 0;
 }
