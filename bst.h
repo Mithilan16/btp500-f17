@@ -27,7 +27,48 @@ class BST{
 			}
 		}
 	}
+	//this function will receive a pointer to a node
+	//and detach and remove the smallest node in this subtree
+	Node* detachInorderSuccessor(Node*& subRoot){
 
+	}
+	void remove(const T& data, Node*& subRoot){
+		if(subRoot!=nullptr){
+			if(data == subRoot->data_){
+				Node* rm=subRoot;   //make a temp to subRoot so I 
+				                    //don't lose it by accident
+				//subroot is a leaf node
+				if(subRoot->left_==nullptr && subRoot->right==nullptr){
+					//null out pointer from parent
+					subRoot=nullptr;
+				}
+				else if(subRoot->left_!=nullptr && subRoot->right_==nullptr){
+					//one child on left
+					subRoot=subRoot->left_;
+				}
+				else if(subRoot->right_!=nullptr && subRoot->left_==nullptr){
+					//one child on right
+					subRoot=subRoot->right_;
+				}
+				else{
+					Node* inorderSuccesor = detachInorderSuccessor(subRoot->right_);
+					inorderSuccesor->left_=subRoot->left_;
+					inorderSuccesor->right_=subRoot->right_;
+					subRoot=inorderSuccesor;
+				}
+
+
+				delete rm;
+			}
+			else if(data < subRoot->data_){
+				remove(data,subRoot->left_);
+			}
+			else{
+				remove(data,subRoot->right_);
+			}
+		}
+
+	}
 	void printPreOrder(const Node* subRoot) const{
 		if(subRoot!=nullptr){
 			cout << subRoot->data_ << " ";
@@ -40,6 +81,13 @@ class BST{
 			printInOrder(subRoot->left_);
 			cout << subRoot->data_ << " ";
 			printInOrder(subRoot->right_);
+		}
+	}
+	void destroy(Node* subRoot){
+		if(subRoot!=nullptr){
+			destroy(subRoot->left_);
+			destroy(subRoot->right_);
+			delete subRoot;
 		}
 	}	
 public:
@@ -78,7 +126,9 @@ public:
 			}
 		}
 	}	
-	void remove(const T& data);
+	void remove(const T& data){
+		remove(data,root_);
+	}
 	//preOrder is depth first
 	void printPreOrder() const{
 		printPreOrder(root_);
@@ -96,21 +146,18 @@ public:
 	//breadthFirst
 	void printBreadthFirst() const{
 		Queue<Node*> q;
-		if(root_){
-			q.enqueue(root_);
-		}
+		q.enqueue(root_);
 		while(!q.empty()){
 			Node* curr=q.front();
 			q.dequeue();
-			cout << curr->data << " ";
-			if(curr->left_){
+			if(curr!=nullptr){
+				cout << curr->data << " " << endl;
 				q.enqueue(curr->left_);
-			}
-			if(curr->right_){
 				q.enqueue(curr->right_);
 			}
 		}
 	}
+
 
 	~BST(){
 		destroy(root_);
